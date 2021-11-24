@@ -3,11 +3,9 @@ defmodule LiveBlogEx.Blog.Post do
 
   alias LiveBlogEx.Helpers.Markdown
 
-  @post_path Application.app_dir(:live_blog_ex, "priv/content/posts")
-
   def all() do
-    for category <- File.ls!(@post_path),
-        file <- Path.join(@post_path, category) |> File.ls!() do
+    for category <- File.ls!(post_path()),
+        file <- Path.join(post_path(), category) |> File.ls!() do
       get(category, Path.basename(file, ".md"))
     end
     |> Enum.reject(&is_draft?/1)
@@ -16,7 +14,7 @@ defmodule LiveBlogEx.Blog.Post do
 
   def get(category, slug) do
     {frontmatter, content} =
-      Path.join([@post_path, category, slug <> ".md"])
+      Path.join([post_path(), category, slug <> ".md"])
       |> File.stream!()
       |> parse()
 
@@ -34,6 +32,8 @@ defmodule LiveBlogEx.Blog.Post do
     |> Map.update!(:content, &Markdown.as_html/1)
     |> then(&Map.put(&1, :toc, make_toc(&1.content)))
   end
+
+  defp post_path, do: Application.app_dir(:live_blog_ex, "priv/content/posts")
 
   defp parse(stream) do
     stream = stream |> Stream.chunk_by(&(&1 == "---\n"))
@@ -89,8 +89,6 @@ defmodule LiveBlogEx.Blog.Post do
       end)
     )
   end
-
-  # defp do_make_toc([{"h2", _slug, _title} | rest], [{"h2", _, _} | _] = toc), do: do_make_toc(rest, toc)
 
   defp do_make_toc([{"h2", _slug, _title} | rest], [] = toc), do: do_make_toc(rest, toc)
 

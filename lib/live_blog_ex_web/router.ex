@@ -20,6 +20,7 @@ defmodule LiveBlogExWeb.Router do
     live "/", HomeLive, :index
     live "/page/:page", HomeLive, :page
     live "/post/:category/:slug", PostLive, :index
+    live "/tag/:tag", TagLive, :index
   end
 
   # Other scopes may use custom stacks.
