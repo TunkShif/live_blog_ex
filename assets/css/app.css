@@ -1,0 +1,189 @@
+/* This file is for your main application CSS */
+@import "@fortawesome/fontawesome-free/css/all.css";
+@import "prismjs/themes/prism.css";
+@import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+@import "prismjs/plugins/autolinker/prism-autolinker.css";
+@import "katex/dist/katex.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-whitesmoke;
+}
+
+.root-container {
+  @apply max-w-6xl mx-4 my-1 md:mx-6 md:my-4 lg:mx-auto lg:px-4;
+}
+
+.box {
+  @apply p-4 bg-white rounded-sm;
+}
+
+/* markdown typography */
+
+.markdown > :first-child {
+  @apply mt-0;
+}
+
+.markdown h1 {
+  @apply text-gray-700 text-2xl font-bold font-outfit my-4;
+}
+
+.markdown h1:before {
+  content: "# ";
+}
+
+.markdown h2 {
+  @apply text-gray-700 text-xl font-bold font-outfit my-3;
+}
+
+.markdown h2:before {
+  content: "# ";
+}
+
+.markdown h3 {
+  @apply text-gray-700 text-lg font-bold font-outfit my-2;
+}
+
+.markdown h4 {
+  @apply text-gray-700 font-bold font-outfit my-2;
+}
+
+.markdown h5 {
+  @apply text-gray-800 text-sm font-outfit my-1;
+}
+
+.markdown h6 {
+  @apply text-gray-800 text-sm font-outfit my-1;
+}
+
+.markdown p {
+  @apply text-gray-800 my-4 leading-loose;
+}
+
+.markdown a {
+  @apply text-dogerblue font-medium border-b-2 border-whitesmoke;
+}
+
+.markdown a:hover,
+.markdown a:focus {
+  @apply outline-none border-b-4 border-whitesmoke;
+}
+
+.markdown code {
+  @apply bg-whitesmoke font-mono rounded-sm;
+}
+
+.markdown blockquote {
+  @apply pl-4 py-1 my-4 bg-blue-100 border-l-4 border-blue-200 rounded-r-sm rounded-l-sm shadow-sm overflow-x-auto;
+}
+
+.markdown pre {
+  @apply px-2 py-1 my-4 bg-whitesmoke rounded-sm shadow-sm overflow-x-auto;
+}
+
+.markdown pre > code {
+  @apply bg-transparent;
+}
+
+.markdown table {
+  @apply block my-4 text-gray-800 table-auto border-collapse rounded-sm overflow-x-auto;
+}
+
+.markdown table thead {
+  @apply bg-blue-100;
+}
+
+.markdown table tbody tr:nth-child(odd) {
+  @apply bg-white;
+}
+
+.markdown table tbody tr:nth-child(even) {
+  @apply bg-blue-50;
+}
+
+.markdown table th,
+.markdown table td {
+  @apply px-4 py-2;
+}
+
+.markdown ol {
+  @apply pl-6 my-2 text-gray-700 space-y-2 overflow-hidden;
+}
+
+.markdown ul {
+  @apply pl-6 my-2 text-gray-700 space-y-2 overflow-hidden;
+}
+.markdown ol > li {
+  @apply list-decimal list-outside;
+}
+
+.markdown ul > li {
+  @apply list-square list-outside;
+}
+
+.markdown hr {
+  @apply h-0 my-6 border-whitesmoke border-dashed border-2;
+}
+
+.markdown figure {
+  @apply inline-block m-0 w-full;
+}
+
+.markdown .img-zoomable {
+  @apply w-full h-auto;
+}
+
+/* code block toolbar */
+
+div.code-toolbar {
+  @apply relative;
+}
+
+div.code-toolbar > .toolbar {
+  @apply absolute top-0 right-1 space-x-1 opacity-0 transition duration-300 ease-in-out;
+}
+
+div.code-toolbar:hover > .toolbar {
+  @apply opacity-100;
+}
+
+div.code-toolbar:focus-within > .toolbar {
+  @apply opacity-100;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item {
+  @apply inline-block;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a {
+  @apply cursor-pointer;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > button {
+  line-height: normal;
+  overflow: visible;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a,
+div.code-toolbar > .toolbar > .toolbar-item > button,
+div.code-toolbar > .toolbar > .toolbar-item > span {
+  @apply px-2 py-1 bg-gray-50 text-gray-700 font-outfit font-bold rounded-b-md;
+}
+
+#table-of-contents .toc-item {
+  @apply pl-2 border-l-4 border-gray-200 transition duration-150 ease-linear hover:border-dogerblue hover:text-dogerblue focus:border-dogerblue focus:text-dogerblue;
+}
+
+#table-of-contents .toc-subitem {
+  @apply pl-4 border-l-4 border-gray-200 transition duration-150 ease-linear hover:border-dogerblue hover:text-dogerblue focus:border-dogerblue focus:text-dogerblue;
+}
+
+#table-of-contents .toc-item-active {
+  @apply border-dogerblue text-dogerblue;
+}

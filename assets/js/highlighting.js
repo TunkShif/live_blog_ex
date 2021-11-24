@@ -1,0 +1,24 @@
+import "prismjs-components-importer/esm/prism-bash";
+import "prismjs-components-importer/esm/prism-bnf";
+import "prismjs-components-importer/esm/prism-clojure";
+import "prismjs-components-importer/esm/prism-docker";
+import "prismjs-components-importer/esm/prism-elixir";
+import "prismjs-components-importer/esm/prism-erlang";
+import "prismjs-components-importer/esm/prism-kotlin";
+import "prismjs-components-importer/esm/prism-rust";
+import "prismjs-components-importer/esm/prism-ruby";
+import "prismjs-components-importer/esm/prism-ocaml";
+import "prismjs-components-importer/esm/prism-java";
+import "prismjs-components-importer/esm/prism-json";
+import "prismjs-components-importer/esm/prism-lua";
+import "prismjs-components-importer/esm/prism-markdown";
+import "prismjs-components-importer/esm/prism-typescript";
+import "prismjs-components-importer/esm/prism-python";
+import "prismjs-components-importer/esm/prism-sql";
+import "prismjs-components-importer/esm/prism-cpp";
+
+import "prismjs/plugins/line-numbers/prism-line-numbers";
+import "prismjs/plugins/autolinker/prism-autolinker";
+import "prismjs/plugins/toolbar/prism-toolbar";
+import "prismjs/plugins/show-language/prism-show-language";
+import "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard"
