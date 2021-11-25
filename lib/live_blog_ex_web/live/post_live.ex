@@ -28,7 +28,7 @@ defmodule LiveBlogExWeb.PostLive do
       <div class="relative md:w-[30%]">
         <div class="md:sticky md:top-1 space-y-2">
           <div class="box space-y-2">
-            <.toc toc={@toc} />
+            <.toc_section />
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@ defmodule LiveBlogExWeb.PostLive do
         socket =
           post
           |> Post.render()
-          |> Map.take([:frontmatter, :content, :category, :toc])
+          |> Map.take([:frontmatter, :content, :category])
           |> then(&assign(socket, &1))
 
         {:ok, socket}
@@ -70,31 +70,14 @@ defmodule LiveBlogExWeb.PostLive do
     """
   end
 
-  defp toc(assigns) do
+  defp toc_section(assigns) do
     ~H"""
     <.section_title icon="fas fa-list" text="Table of Contents" />
-    <div id="table-of-contents" class="relative flex font-outfit text-gray-500" phx-hook="ToC">
-      <ol>
-        <%= for {"h1", {slug, title}, subtitles} <- @toc do %>
-          <li class="toc-item">
-            <a onclick={scroll_to_title(slug)} href={"##{slug}"}><%= title %></a>
-          </li>
-          <%= unless Enum.empty?(subtitles) do %>
-            <ol class="toc-sublist">
-              <%= for {"h2", {subslug, subtitle}} <- subtitles do %>
-                <li class="toc-subitem">
-                  <a onclick={scroll_to_title(subslug)} href={"##{subslug}"}><%= subtitle %></a>
-                </li>
-              <% end %>
-            </ol>
-          <% end %>
-        <% end %>
-      </ol>
+    <div>
+      <div id="table-of-contents" class="relative -font-outfit -text-gray-500">
+        loading
+      </div>
     </div>
     """
-  end
-
-  defp scroll_to_title(slug) do
-    ~s/event.preventDefault();document.querySelector('##{slug}').scrollIntoView({behavior: 'smooth'})/
   end
 end

@@ -60,7 +60,7 @@ body {
 }
 
 .markdown p {
-  @apply text-gray-800 my-4 leading-loose;
+  @apply text-gray-800 my-4 leading-relaxed;
 }
 
 .markdown a {
@@ -176,14 +176,60 @@ div.code-toolbar > .toolbar > .toolbar-item > span {
   @apply px-2 py-1 bg-gray-50 text-gray-700 font-outfit font-bold rounded-b-md;
 }
 
-#table-of-contents .toc-item {
-  @apply pl-2 border-l-4 border-gray-200 transition duration-150 ease-linear hover:border-dogerblue hover:text-dogerblue focus:border-dogerblue focus:text-dogerblue;
+/* table of contens */
+
+#table-of-contents {
+  @apply overflow-y-auto;
 }
 
-#table-of-contents .toc-subitem {
-  @apply pl-4 border-l-4 border-gray-200 transition duration-150 ease-linear hover:border-dogerblue hover:text-dogerblue focus:border-dogerblue focus:text-dogerblue;
+#table-of-contents > .toc-list {
+  @apply relative overflow-hidden;
 }
 
-#table-of-contents .toc-item-active {
-  @apply border-dogerblue text-dogerblue;
+#table-of-contents > .toc-list li {
+  @apply m-0 list-none;
+}
+
+#table-of-contents > .toc-list li a {
+  @apply text-gray-400 font-outfit;
+}
+
+.toc-list {
+  @apply m-0 pl-[10px];
+}
+
+a.toc-link {
+  @apply h-full leading-relaxed;
+}
+
+.is-collapsible {
+  @apply max-h-[1000px] overflow-hidden transition duration-300 ease-in-out;
+}
+
+.is-collapsed {
+  @apply max-h-0;
+}
+
+.is-position-fixed {
+  @apply fixed top-0;
+}
+
+.is-active-link {
+  color: #1b95e0 !important;
+  font-weight: 700;
+}
+
+.toc-link::before {
+  background-color: #eee;
+  content: " ";
+  display: inline-block;
+  height: inherit;
+  left: 0;
+  margin-top: -1px;
+  position: absolute;
+  width: 3px;
+}
+
+.is-active-link::before {
+  @apply bg-dogerblue;
 }

@@ -1,5 +1,5 @@
 defmodule LiveBlogEx.Blog.Post do
-  defstruct slug: nil, frontmatter: nil, category: nil, content: nil, toc: []
+  defstruct slug: nil, frontmatter: nil, category: nil, content: nil
 
   alias LiveBlogEx.Helpers.Markdown
 
@@ -30,7 +30,6 @@ defmodule LiveBlogEx.Blog.Post do
     post
     |> Map.update!(:content, &Enum.join/1)
     |> Map.update!(:content, &Markdown.as_html/1)
-    |> then(&Map.put(&1, :toc, make_toc(&1.content)))
   end
 
   defp post_path, do: Application.app_dir(:live_blog_ex, "priv/content/posts")
@@ -61,36 +60,4 @@ defmodule LiveBlogEx.Blog.Post do
   def is_draft?(%__MODULE__{frontmatter: frontmatter}) do
     Map.get(frontmatter, :draft) == true
   end
-
-  defp make_toc(content) do
-    content
-    |> Floki.parse_fragment!()
-    |> Floki.find("h1[id], h2[id]")
-    |> Enum.map(&extract_titles/1)
-    |> do_make_toc([])
-    |> Enum.reverse()
-    |> Enum.map(fn {tag, info, children} -> {tag, info, Enum.reverse(children)} end)
-  end
-
-  defp extract_titles({tag, _attrs, _children} = node) do
-    with [slug] <- Floki.attribute(node, "id"),
-         title <- Floki.text([node]) |> String.trim(),
-         do: {tag, slug, title}
-  end
-
-  defp do_make_toc([{"h1", slug, title} | rest], toc),
-    do: do_make_toc(rest, [{"h1", {slug, title}, []} | toc])
-
-  defp do_make_toc([{"h2", slug, title} | rest], [{"h1", _, _} | _] = toc) do
-    do_make_toc(
-      rest,
-      List.update_at(toc, 0, fn {"h1", info, children} ->
-        {"h1", info, [{"h2", {slug, title}} | children]}
-      end)
-    )
-  end
-
-  defp do_make_toc([{"h2", _slug, _title} | rest], [] = toc), do: do_make_toc(rest, toc)
-
-  defp do_make_toc([], toc), do: toc
 end

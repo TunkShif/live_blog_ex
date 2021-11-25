@@ -3,16 +3,20 @@ import Prism from "prismjs";
 import katex from "katex";
 import renderMathInElement from "katex/contrib/auto-render";
 import "./highlighting";
+import "./tocbot";
 
 let Hooks = {};
 
 Hooks.MarkdownExt = {
   mounted() {
-    const zooming = new Zooming({});
+    // zoomable images
+    let zooming = new Zooming({});
     zooming.listen(".img-zoomable");
 
+    // code highlight
     Prism.highlightAllUnder(this.el);
 
+    // math formula
     renderMathInElement(this.el, {
       delimiters: [
         { left: "$$", right: "$$", display: true },
@@ -20,31 +24,19 @@ Hooks.MarkdownExt = {
       ],
       throwOnError: false,
     });
-  },
-};
 
-Hooks.ToC = {
-  observer: new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const id = entry.target.getAttribute("id");
-      if (entry.isIntersecting) {
-        document
-          .querySelector(`#table-of-contents a[href="#${id}"]`)
-          .parentElement.classList.add("toc-item-active");
-      } else {
-        document
-          .querySelector(`#table-of-contents a[href="#${id}"]`)
-          .parentElement.classList.remove("toc-item-active");
-      }
+    // table of contents
+    tocbot.init({
+      tocSelector: "#table-of-contents",
+      contentSelector: "#markdown",
+      headingSelector: "h1[id], h2[id]",
     });
-  }),
-  mounted() {
-    document
-      .querySelectorAll("h1[id], h2[id]")
-      .forEach((element) => this.observer.observe(element));
+  },
+  updated() {
+    tocbot.refresh();
   },
   destroyed() {
-    this.observer.disconnect();
+    tocbot.destroy();
   },
 };
 
