@@ -20,7 +20,7 @@ if config_env() == :prod do
       """
 
   config :live_blog_ex, LiveBlogExWeb.Endpoint,
-    url: [host: "tunkshif.one", port: 80],
+    url: [host: "localhost", port: 80],
     http: [
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: String.to_integer(System.get_env("PORT") || "4000")
