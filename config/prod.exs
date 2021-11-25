@@ -10,7 +10,7 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :live_blog_ex, LiveBlogExWeb.Endpoint,
-  url: [host: "localhost", port: 80],
+  url: [host: "tunkshif.one", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
@@ -21,16 +21,16 @@ config :logger, level: :info
 # To get SSL working, you will need to add the `https` key
 # to the previous section and set your `:url` port to 443:
 #
-#     config :live_blog_ex, LiveBlogExWeb.Endpoint,
-#       ...,
-#       url: [host: "example.com", port: 443],
-#       https: [
-#         ...,
-#         port: 443,
-#         cipher_suite: :strong,
-#         keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
-#         certfile: System.get_env("SOME_APP_SSL_CERT_PATH")
-#       ]
+
+config :live_blog_ex, LiveBlogExWeb.Endpoint,
+  url: [host: "tunkshif.one", port: 443],
+  https: [
+    port: 443,
+    cipher_suite: :strong,
+    keyfile: System.get_env("SSL_KEY_PATH"),
+    certfile: System.get_env("SSL_CERT_PATH")
+  ]
+
 #
 # The `cipher_suite` is set to `:strong` to support only the
 # latest and more secure SSL ciphers. This means old browsers
@@ -44,8 +44,7 @@ config :logger, level: :info
 #
 # We also recommend setting `force_ssl` in your endpoint, ensuring
 # no data is ever sent via http, always redirecting to https:
-#
-#     config :live_blog_ex, LiveBlogExWeb.Endpoint,
-#       force_ssl: [hsts: true]
-#
+
+config :live_blog_ex, LiveBlogExWeb.Endpoint, force_ssl: [hsts: true]
+
 # Check `Plug.SSL` for all available options in `force_ssl`.

@@ -43,6 +43,7 @@ defmodule LiveBlogExWeb.HomeLive do
 
       socket =
         socket
+        |> assign(:page_title, "Home")
         |> assign(:current_page, current_page)
         |> assign(:max_page, max_page)
         |> assign(:posts, posts)
