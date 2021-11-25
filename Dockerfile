@@ -30,7 +30,7 @@ COPY config/runtime.exs config/
 RUN mix release
 
 FROM alpine:3.14.2 AS app
-RUN apk add --no-cache libstdc++ openssl ncurses-libs
+RUN apk add --no-cache libstdc++ openssl ncurses-libs git
 
 ARG MIX_ENV
 ENV USER="elixir"

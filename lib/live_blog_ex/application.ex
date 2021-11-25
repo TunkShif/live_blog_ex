@@ -16,6 +16,7 @@ defmodule LiveBlogEx.Application do
       LiveBlogExWeb.Endpoint,
       # Start a worker by calling: LiveBlogEx.Worker.start_link(arg)
       # {LiveBlogEx.Worker, arg}
+      LiveBlogEx.Blog.Repo,
       LiveBlogEx.Blog
     ]
 

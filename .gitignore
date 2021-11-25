@@ -32,3 +32,5 @@ live_blog_ex-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore blog posts repo
+/priv/content/

@@ -23,10 +23,11 @@ defmodule LiveBlogExWeb.Router do
     live "/tag/:tag", TagLive, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", LiveBlogExWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", LiveBlogExWeb do
+    pipe_through :api
+
+    get "/repo/update", RepoController, :update
+  end
 
   # Enables LiveDashboard only for development
   #

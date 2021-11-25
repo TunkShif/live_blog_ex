@@ -16,7 +16,11 @@ defmodule LiveBlogEx.Blog do
 
   @impl true
   def init(state \\ %Blog{}) do
-    posts = Post.all() 
+    {:ok, update(state)}
+  end
+
+  defp update(%Blog{} = blog) do
+    posts = Post.all()
 
     categories =
       for post <- posts, into: MapSet.new() do
@@ -30,7 +34,7 @@ defmodule LiveBlogEx.Blog do
       end
       |> MapSet.to_list()
 
-    {:ok, %{state | categories: categories, posts: posts, tags: tags}}
+    %{blog | categories: categories, posts: posts, tags: tags}
   end
 
   def all_posts() do
@@ -51,6 +55,10 @@ defmodule LiveBlogEx.Blog do
 
   def get_posts({:tag, _tag} = params) do
     GenServer.call(__MODULE__, {:get_posts, params})
+  end
+
+  def update_posts() do
+    GenServer.cast(__MODULE__, :update_posts)
   end
 
   @impl true
@@ -79,5 +87,10 @@ defmodule LiveBlogEx.Blog do
   def handle_call({:get_posts, {:tag, tag}}, _from, blog) do
     posts = blog.posts |> Enum.filter(&(tag in &1.frontmatter.tags))
     {:reply, posts, blog}
+  end
+
+  @impl true
+  def handle_cast(:update_posts, blog) do
+    {:noreply, update(blog)}
   end
 end
