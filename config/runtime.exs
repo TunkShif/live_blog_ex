@@ -22,7 +22,7 @@ if config_env() == :prod do
   config :live_blog_ex, LiveBlogExWeb.Endpoint,
     url: [host: "localhost", port: 80],
     http: [
-      ip: {0, 0, 0, 0, 0, 0, 0, 0},
+      ip: {127, 0, 0, 1},
       port: String.to_integer(System.get_env("PORT") || "4000")
     ],
     secret_key_base: secret_key_base

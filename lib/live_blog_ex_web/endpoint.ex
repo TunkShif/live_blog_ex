@@ -45,5 +45,10 @@ defmodule LiveBlogExWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+
+  if Mix.env() == :prod do
+    plug Plug.SSL, rewrite_on: [:x_forwarded_host, :x_forwarded_port, :x_forwarded_proto]
+  end
+
   plug LiveBlogExWeb.Router
 end
