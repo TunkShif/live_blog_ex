@@ -10,7 +10,7 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :live_blog_ex, LiveBlogExWeb.Endpoint,
-  url: [host: "tunkshif.one", port: 80],
+  url: [host: "tunkshif.one", port: 4000],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
@@ -23,13 +23,13 @@ config :logger, level: :info
 #
 
 config :live_blog_ex, LiveBlogExWeb.Endpoint,
-  url: [host: "tunkshif.one", port: 443],
   https: [
     port: 443,
     cipher_suite: :strong,
     opt_app: :live_blog_ex,
     keyfile: "priv/ssl/key.pem",
-    certfile: "priv/ssl/cert.pem"
+    certfile: "priv/ssl/cert.pem",
+    cacertfile: "priv/ssl/cacert.pem"
   ]
 
 #
