@@ -27,8 +27,9 @@ config :live_blog_ex, LiveBlogExWeb.Endpoint,
   https: [
     port: 443,
     cipher_suite: :strong,
-    keyfile: System.get_env("SSL_KEY_PATH"),
-    certfile: System.get_env("SSL_CERT_PATH")
+    opt_app: :live_blog_ex,
+    keyfile: "priv/ssl/key.pem",
+    certfile: "priv/ssl/cert.pem"
   ]
 
 #
