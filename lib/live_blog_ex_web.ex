@@ -90,6 +90,8 @@ defmodule LiveBlogExWeb do
       import LiveBlogExWeb.ErrorHelpers
       import LiveBlogExWeb.Gettext
       alias LiveBlogExWeb.Router.Helpers, as: Routes
+
+      import LiveBlogExWeb.Components
     end
   end
 

@@ -17,10 +17,12 @@ defmodule LiveBlogExWeb.Router do
   scope "/", LiveBlogExWeb do
     pipe_through :browser
 
-    live "/", HomeLive, :index
     live "/page/:page", HomeLive, :page
-    live "/post/:category/:slug", PostLive, :index
+    # live "/post/:category/:slug", PostLive, :index
     live "/tag/:tag", TagLive, :index
+
+    get "/", PageController, :index
+    get "/post/:category/:slug", PostController, :index
   end
 
   scope "/api", LiveBlogExWeb do

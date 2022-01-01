@@ -178,19 +178,19 @@ div.code-toolbar > .toolbar > .toolbar-item > span {
 
 /* table of contens */
 
-#table-of-contents {
+.table-of-contents {
   @apply overflow-y-auto;
 }
 
-#table-of-contents > .toc-list {
+.table-of-contents > .toc-list {
   @apply relative overflow-hidden;
 }
 
-#table-of-contents > .toc-list li {
+.table-of-contents > .toc-list li {
   @apply m-0 list-none;
 }
 
-#table-of-contents > .toc-list li a {
+.table-of-contents > .toc-list li a {
   @apply text-gray-400 font-outfit;
 }
 

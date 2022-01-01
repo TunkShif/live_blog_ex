@@ -52,39 +52,4 @@ defmodule LiveBlogExWeb.HomeLive do
       {:ok, socket}
     end
   end
-
-  defp profile_section(assigns) do
-    ~H"""
-      <div class="space-y-2">
-        <figure class="flex justify-center items-center" >
-          <img class="rounded-full border-2 border-whitesmoke shadow-sm" src="/images/avatar.jpeg" width="96" height="96" />
-        </figure>
-        <h2 class="text-lg text-gray-700 font-outfit font-bold text-center">
-          TunkShif
-        </h2>
-        <h3 class="text-sm text-silver font-outfit text-center">
-          Functional Programming
-        </h3>
-        <h3 class="text-sm text-silver font-outfit text-center">
-          Language/Linguistics Enthusiast
-        </h3>
-        <div class="py-2 flex justify-center space-x-4">
-          <a 
-            href="https://github.com/TunkShif"
-            target="_blank"
-            class="px-2 py-1 bg-dogerblue bg-opacity-90 text-sm text-white rounded-[0.25em] shadow-sm outline-none transition duration-300 ease-in-out hover:bg-opacity-70 focus:bg-opacity-70">
-            <i class="fab fa-github"></i>
-            <span class="font-outfit font-bold" >GitHub</span>
-          </a>
-          <a
-            href="https://twitter.com/TunkShif"
-            target="_blank"
-            class="px-2 py-1 bg-dogerblue bg-opacity-90 text-sm text-white rounded-[0.25em] shadow-sm outline-none transition duration-300 ease-in-out hover:bg-opacity-70 focus:bg-opacity-70">
-            <i class="fab fa-twitter"></i>
-            <span class="font-outfit font-bold">Follow</span>
-          </a>
-        </div>
-      </div>
-    """
-  end
 end

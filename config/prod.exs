@@ -11,6 +11,7 @@ import Config
 # before starting your production server.
 config :live_blog_ex, LiveBlogExWeb.Endpoint,
   url: [host: "tunkshif.one",  port: 80],
+  http: [compress: true],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
