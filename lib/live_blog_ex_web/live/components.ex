@@ -58,7 +58,7 @@ defmodule LiveBlogExWeb.Components do
   def footer(assigns) do
     ~H"""
     <div class="my-4 text-gray-600 font-oswald font-bold space-y-1">
-      <h1>2021 © TUNKSHIF</h1>
+      <h1>2022 © TUNKSHIF</h1>
       <p class="text-sm">
         Powered By <span class="underline">PETL</span> (Phoenix · Elixir · TailwindCSS · LiveView)
       </p>
@@ -115,6 +115,10 @@ defmodule LiveBlogExWeb.Components do
   end
 
   def post(assigns) do
+    language = case Map.get(assigns.frontmatter, :lang) do
+      "zh" -> "中文"
+      _ -> "EN"
+    end
     assigns =
       assigns
       |> assign(
@@ -138,6 +142,10 @@ defmodule LiveBlogExWeb.Components do
           <span class="inline-flex items-center text-silver space-x-2">
             <i class="fas fa-archive"></i>
             <span class="font-medium"><%= String.upcase(@category) %></span>
+          </span>
+          <span class="inline-flex items-center text-silver space-x-2">
+            <i class="fas fa-globe-asia"></i>
+            <span class="font-medium"><%= language %></span>
           </span>
         </div>
       </div>

@@ -14,6 +14,8 @@ defmodule LiveBlogExWeb.PostController do
           post
           |> Post.render()
           |> Map.take([:frontmatter, :content, :category])
+          |> Map.put(:page_title, post.frontmatter.title)
+          |> Map.put(:page_description, post.frontmatter.desc)
 
         render(conn, "index.html", assigns)
     end
